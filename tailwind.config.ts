@@ -19,7 +19,7 @@ const config : Config = {
                     500: "#5E7AF6",
                     600: "#4053EB",
                     700: "#3341CF",
-                    800: " #2C3AA7",
+                    800: "#2C3AA7",
                     900: "#2B3784",
                     950:"#191E4D"
 
@@ -27,7 +27,7 @@ const config : Config = {
 
             },
             animation: {
-                "fade- in" : "fadeIn 0.3s ease-in-out",
+                "fade-in" : "fadeIn 0.3s ease-in-out",
                 "slide-up": "slideUp 0.3s ease-out",
             },
             keyframes: {

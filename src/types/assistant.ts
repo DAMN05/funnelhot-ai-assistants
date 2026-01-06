@@ -1,7 +1,7 @@
 export interface Assistant {
     id: string;
     name: string;
-    language: "Español"|"Ingles"|"portugues";
+    language: "Español"|"Inglés"|"Portugués";
     tone: "Formal" | "Casual" | "Profesional" | "Amigable" | "Amigable";
     responseLength: {
         short: number;

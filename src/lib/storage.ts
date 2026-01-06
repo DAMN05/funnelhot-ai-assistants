@@ -87,7 +87,7 @@ export const storageService = {
             {
                 id : "2",
                 name : "Soporte Técnico",
-                language :"Ingles",
+                language :"Inglés",
                 tone:"Amigable",
                 responseLength:{
                     short: 20,
@@ -98,6 +98,7 @@ export const storageService = {
                 rules: " Ayudas a resolver problemas tecnicos de manera clara y paso a paso. Siempre confirma que el usuario haya entendido antes de continuar"
 
             },
+            
         ];
 
         storageService.saveAssistants(DataEj);

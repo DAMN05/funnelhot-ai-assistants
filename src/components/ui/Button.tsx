@@ -15,14 +15,14 @@ export const Button : React.FC<ButtonProps> = ({
     disabled,
     ...props
 }) => {
-    const basseStyles = 
-    "font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-notallowed inline-flex items-center justify-center";
+    const baseStyles = 
+    "font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2";
 
     const variants = {
         primary:
-        "bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800",
+        "bg-primary-600 text-blue-700 hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md border border-primary-700",
         secondary:
-        "bg-gray-200 text-gray-900 hover: bg-gray-300 active:bg-gray-400",
+        "bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400",
         danger:
         "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
         ghost:
@@ -38,7 +38,7 @@ export const Button : React.FC<ButtonProps> = ({
 
     return (
     <button
-        className = {`${basseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+        className = {`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
         disabled ={disabled || isLoading}
         {...props}
     >
