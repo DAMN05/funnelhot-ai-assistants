@@ -39,21 +39,18 @@ export const AssistantCard: React.FC<AssistantCardProps> = ({
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200 animate-fade-in">
       <div className="flex items-center justify-between gap-6">
-        {/* Información del asistente */}
         <div className="flex-1 min-w-0">
           <h3 className="text-xl font-semibold text-gray-900 mb-3">
             {assistant.name}
           </h3>
           
           <div className="flex flex-wrap items-center gap-4 text-sm">
-            {/* Idioma */}
             <div className="flex items-center gap-2 text-gray-700">
               <span className="text-lg">{getLanguageFlag(assistant.language)}</span>
               <span className="font-medium">Idioma:</span>
               <span>{assistant.language}</span>
             </div>
 
-            {/* Tono */}
             <div className="flex items-center gap-2">
               <span className="font-medium text-gray-700">Tono:</span>
               <span
@@ -65,7 +62,6 @@ export const AssistantCard: React.FC<AssistantCardProps> = ({
               </span>
             </div>
 
-            {/* Audio */}
             {assistant.audioEnabled && (
               <div className="flex items-center gap-2 text-emerald-600">
                 <svg
@@ -87,7 +83,6 @@ export const AssistantCard: React.FC<AssistantCardProps> = ({
           </div>
         </div>
 
-        {/* Acciones */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <Button
             variant="ghost"

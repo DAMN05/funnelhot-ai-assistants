@@ -19,7 +19,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelecrProps>(
                 )}
                 <select
                 ref={ref}
-                className = {`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-white ${error ? "border-red-500" : "border-gray-300"} ${className} `}
+                className = {`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-white text-gray-900 font-medium ${error ? "border-red-500" : "border-gray-300"} ${className} `}
                 {...props}
                 >
                     <option value = ""> Seleccionar...</option>

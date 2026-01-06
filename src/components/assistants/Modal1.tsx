@@ -28,14 +28,13 @@ export const AssistantModalStep1: React.FC<AssistantModalStep1Props> = ({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Indicador de pasos */}
       <div className="flex items-center justify-center mb-6">
         <div className="flex items-center">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-600 text-white font-semibold">
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-lg">
             1
           </div>
-          <div className="w-16 h-1 bg-gray-300 mx-2"></div>
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-300 text-gray-600 font-semibold">
+          <div className="w-20 h-1 bg-gray-300 mx-2"></div>
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-700 font-bold text-lg">
             2
           </div>
         </div>
@@ -48,7 +47,6 @@ export const AssistantModalStep1: React.FC<AssistantModalStep1Props> = ({
         </p>
       </div>
 
-      {/* Nombre */}
       <Input
         label="Nombre del Asistente"
         type="text"
@@ -59,7 +57,6 @@ export const AssistantModalStep1: React.FC<AssistantModalStep1Props> = ({
         required
       />
 
-      {/* Idioma */}
       <Select
         label="Idioma"
         value={formData.language}
@@ -69,7 +66,6 @@ export const AssistantModalStep1: React.FC<AssistantModalStep1Props> = ({
         required
       />
 
-      {/* Tono */}
       <Select
         label="Tono/Personalidad"
         value={formData.tone}
@@ -79,7 +75,6 @@ export const AssistantModalStep1: React.FC<AssistantModalStep1Props> = ({
         required
       />
 
-      {/* Botones */}
       <div className="flex justify-end gap-3 pt-4">
         <Button type="button" variant="secondary" onClick={onCancel}>
           Cancelar

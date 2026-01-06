@@ -3,7 +3,6 @@ import { Assistant } from "@/types/assistant";
 const STORAGE_KEY = "ai-assistants";
 
 export const storageService = {
-    //Obtenemos todos los asistentes almacenados
     getAssistants: (): Assistant[] => {
         if (typeof window === "undefined") return [];
         

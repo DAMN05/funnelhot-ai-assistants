@@ -6,42 +6,48 @@ import { Assistant } from "@/types/assistant";
 import { storageService } from "@/lib/storage";
 import { AssistantCard } from "@/components/assistants/AssistantCard";
 import { EmptyState } from "@/components/assistants/EmptyState";
+import { AssistantModal } from "@/components/assistants/AssistantModal";
 import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   const router = useRouter();
   const [assistants, setAssistants] = useState<Assistant[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAssistant, setSelectedAssistant] = useState<Assistant | null>(
+    null
+  );
 
-  useEffect(() => {
-    // Inicializar con datos de ejemplo si es la primera vez
-    storageService.InicioDataEjemplo();
-    
-    // Cargar asistentes
+  const loadAssistants = () => {
     const loadedAssistants = storageService.getAssistants();
     setAssistants(loadedAssistants);
+  };
+
+  useEffect(() => {
+    storageService.InicioDataEjemplo();
+    loadAssistants();
     setIsLoading(false);
   }, []);
 
   const handleCreateAssistant = () => {
-    // TODO: Abrir modal de creación
-    console.log("Abrir modal de creación");
+    setSelectedAssistant(null);
+    setIsModalOpen(true);
   };
 
   const handleEditAssistant = (assistant: Assistant) => {
-    // TODO: Abrir modal de edición
-    console.log("Editar asistente:", assistant);
+    setSelectedAssistant(assistant);
+    setIsModalOpen(true);
   };
 
   const handleDeleteAssistant = (id: string) => {
     const confirmed = window.confirm(
       "¿Estás seguro de que deseas eliminar este asistente?"
     );
-    
+
     if (confirmed) {
       const success = storageService.deleteAssistant(id);
       if (success) {
-        setAssistants(storageService.getAssistants());
+        loadAssistants();
         alert("Asistente eliminado exitosamente");
       }
     }
@@ -49,6 +55,10 @@ export default function Home() {
 
   const handleTrainAssistant = (id: string) => {
     router.push(`/${id}`);
+  };
+
+  const handleModalSuccess = () => {
+    loadAssistants();
   };
 
   if (isLoading) {
@@ -61,7 +71,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -79,7 +89,8 @@ export default function Home() {
           <>
             <div className="flex justify-between items-center mb-6">
               <p className="text-sm text-gray-600">
-                {assistants.length} {assistants.length === 1 ? "asistente" : "asistentes"}
+                {assistants.length}{" "}
+                {assistants.length === 1 ? "asistente" : "asistentes"}
               </p>
               <Button onClick={handleCreateAssistant}>
                 <svg
@@ -99,7 +110,7 @@ export default function Home() {
               </Button>
             </div>
 
-            {/* Grid de tarjetas */}
+            {/* Lista de tarjetas */}
             <div className="space-y-4">
               {assistants.map((assistant) => (
                 <AssistantCard
@@ -114,6 +125,14 @@ export default function Home() {
           </>
         )}
       </div>
+
+      {/* Modal */}
+      <AssistantModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSuccess={handleModalSuccess}
+        assistant={selectedAssistant}
+      />
     </main>
   );
 }
