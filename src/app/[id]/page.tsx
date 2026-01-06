@@ -34,7 +34,6 @@ export default function TrainingPage() {
     setAssistant(loadedAssistant);
     setTrainingRules(loadedAssistant.rules || "");
 
-    // Cargar historial de chat
     const chatHistory = storageService.getChatHistory(id);
     setMessages(chatHistory);
 
@@ -73,7 +72,6 @@ export default function TrainingPage() {
     setMessages(newMessages);
     storageService.saveChatHistory(id, newMessages);
 
-    // Simular respuesta del asistente
     setIsTyping(true);
     setTimeout(() => {
       const assistantMessage: ChatMessageType = {
