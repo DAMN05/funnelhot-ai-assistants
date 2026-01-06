@@ -36,3 +36,16 @@ export const TONE_OPTIONS = [
     {value: "Profesional", label: "Profesional"},
     {value: "Amigable", label: "Amigable"},
 ];
+
+export interface ChatMessage {
+    id: string;
+    role : "user" | "assistant";
+    content: string;
+    timestamp: Date;
+}
+
+export interface TrainingData {
+    assistantId: string;
+    rules : string;
+    chatHistory: ChatMessage[];
+}

@@ -1,4 +1,4 @@
-import { Assistant } from "@/types/assistant";
+import { Assistant, ChatMessage } from "@/types/assistant";
 
 const STORAGE_KEY = "ai-assistants";
 
@@ -102,4 +102,56 @@ export const storageService = {
 
         storageService.saveAssistants(DataEj);
     },
+    saveTrainingRules: (assistantId: string, rules: string): boolean =>{
+        const assistants = storageService.getAssistants();
+        const index = assistants.findIndex((a)=> a.id === assistantId);
+        if ( index === -1) return false;
+
+        assistants[index] = {...assistants[index], rules};
+        storageService.saveAssistants(assistants);
+        return true;
+    },
+
+    getChatHistory: (assistantId: string): ChatMessage[]=>{
+
+        if(typeof window === "undefined") return [];
+
+    const key = `chat-history-${assistantId}`;
+        const data = localStorage.getItem (key);
+
+        if (!data) return [];
+
+
+        try{
+            const messages = JSON.parse(data);
+            return messages.map((msg:ChatMessage) => ({
+                ...msg,
+                timestamp: new Date(msg.timestamp),
+            }));
+        } catch (error) {
+            console.error("Error al obtener el historial de chat del localStorage:", error);
+            return [];
+        }
+
+    },
+
+
+    saveChatHistory: (assistantId: string, messages: ChatMessage[]): void =>{
+        if (typeof window === "undefined") return;
+
+        const key = `chat-history-${assistantId}`;
+
+        try{
+            localStorage.setItem(key,JSON.stringify(messages));
+
+        }catch ( error){
+            console.error("Error al guardar el historial de chat en el localStorage:", error);
+        }
+    },
+    clearChatHistory:(assistantId: string):void =>{
+        if (typeof window === "undefined") return;
+
+        const key = `chat-history-${assistantId}`;
+        localStorage.removeItem(key);
+    }
 };
